@@ -1,0 +1,49 @@
+<div class="bg-white shadow-xl flex justify-between items-center px-4 h-16"> 
+  <p class="text-sm ml-4 sm:ml-20">Over 100,000 results for "shopping"</p>
+  <select title="sorting" (change)="onPriceFilterChange($event)" class="text-sm text-black px-4 py-1 rounded-full bg-gray-50 border border-gray-300 focus:ring-green-500 focus:border-green-500 sm:mr-20">
+      <option value="0" selected>Sort By: Featured</option>
+      <option value="1">Price Low to High</option>
+      <option value="2">Price High to Low</option>
+  </select>
+</div>
+
+<div class="flex justify-between w-full"> 
+  <div class="w-1/5 p-4 ml-4">
+      <div>
+          <label class="font-bold">Pets</label>  
+          <fieldset class="p-2">
+              <legend class="sr-only">Checkbox variants</legend>
+              <div *ngFor="let pet of pets">
+                  <input type="checkbox" (change)="selectPet(pet.id)">
+                  {{ pet.name }}
+              </div>
+          </fieldset>
+      </div>
+      <div>
+          <label class="font-bold">Categories</label>  
+          <fieldset class="p-2">
+              <legend class="sr-only">Checkbox variants</legend>
+              <div *ngFor="let category of categories">
+                  <input type="checkbox" (change)="selectCategory(category.id)">
+                  {{ category.name }}
+              </div>
+          </fieldset>
+      </div>
+  </div>
+<div class="flex flex-col justify-center">
+  <div class="flex flex-wrap justify-center w-4/5 m-5">
+      <app-pet-product-card *ngFor="let petProduct of filteredPetProducts" [petProduct]="petProduct"></app-pet-product-card>
+  </div>
+
+  <div class="flex justify-center items-center space-x-2">
+      <button
+          *ngFor="let page of pagesArray"
+          [ngClass]="{ 'bg-blue-500 text-white': page === currentPage, 'bg-gray-200 text-gray-700': page !== currentPage }"
+          class="px-3 py-2 rounded-md focus:outline-none"
+          (click)="onPageChange(page)"
+      >
+          {{ page }}
+      </button>
+  </div>
+</div>
+</div>

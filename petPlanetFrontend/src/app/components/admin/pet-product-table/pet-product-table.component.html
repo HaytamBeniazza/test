@@ -1,0 +1,68 @@
+<div class="relative overflow-x-auto">
+    <app-popup name="Add Pet Product" color="green" title="Add Pet Product">
+        <form [formGroup]="petProductForm" (ngSubmit)="addPetProduct()" class="w-full max-w-lg mx-auto">
+            <div class="grid gap-4 mb-4 grid-cols-2">
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="productName" class="block mb-2 text-sm font-medium text-gray-900">Product Name</label>
+                    <select formControlName="productId" id="productName" class="form-select appearance-none block w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+                    </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="petName" class="block mb-2 text-sm font-medium text-gray-900">Pet Name</label>
+                    <select formControlName="petId" id="petName" class="form-select appearance-none block w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option *ngFor="let pet of pets" [value]="pet.id">{{ pet.name }}</option>
+                    </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="categoryName" class="block mb-2 text-sm font-medium text-gray-900">Category Name</label>
+                    <select formControlName="categoryId" id="categoryName" class="form-select appearance-none block w-full bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="inline-block px-6 py-3 text-sm font-medium leading-5 text-white uppercase bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-150 ease-in-out">Add Pet Product</button>
+        </form>          
+    </app-popup>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Pet
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let petProduct of petProducts" class="bg-white border-b">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    {{ petProduct.id }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ petProduct.product.name }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ petProduct.pet.name }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ petProduct.category.name }}
+                </td>
+                <td class="px-6 py-4">
+                    <button class="inline-block px-4 py-2 text-sm font-medium leading-5 text-red-700 bg-red-100 border border-transparent rounded-lg hover:bg-red-200 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150" (click)="deletePetProduct(petProduct.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

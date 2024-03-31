@@ -1,0 +1,27 @@
+<div class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+    <button (click)="selectTable('product')" [class]="selectedTable === 'product' ? 'inline-block p-4 text-green-600 bg-gray-100 rounded-t-lg active' : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50'">Product</button>
+    <button (click)="selectTable('pet')" [class]="selectedTable === 'pet' ? 'inline-block p-4 text-green-600 bg-gray-100 rounded-t-lg active' : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50'">Pet</button>
+    <button (click)="selectTable('petproduct')" [class]="selectedTable === 'petproduct' ? 'inline-block p-4 text-green-600 bg-gray-100 rounded-t-lg active' : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50'">Product of Pet</button>
+    <button (click)="selectTable('category')" [class]="selectedTable === 'category' ? 'inline-block p-4 text-green-600 bg-gray-100 rounded-t-lg active' : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50'">Category</button>
+</div>
+
+<ng-container *ngIf="selectedTable === 'pet'; then petTable"></ng-container>
+<ng-container *ngIf="selectedTable === 'product'; then productTable"></ng-container>
+<ng-container *ngIf="selectedTable === 'petproduct'; then petProductTable"></ng-container>
+<ng-container *ngIf="selectedTable === 'category'; then categoryTable"></ng-container>
+
+<ng-template #petTable>
+  <app-pet-table></app-pet-table>
+</ng-template>
+
+<ng-template #productTable>
+  <app-product-table></app-product-table>
+</ng-template>
+
+<ng-template #petProductTable>
+  <app-pet-product-table></app-pet-product-table>
+</ng-template>
+
+<ng-template #categoryTable>
+  <app-category-table></app-category-table>
+</ng-template>

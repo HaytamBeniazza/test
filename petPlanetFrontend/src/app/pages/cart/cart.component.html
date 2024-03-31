@@ -1,0 +1,45 @@
+<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+  <div class="flex items-start justify-between">
+    <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+  </div>
+
+  <div class="mt-8">
+    <div class="flow-root">
+      <ul role="list" class="-my-6 divide-y divide-gray-200">
+        <li *ngFor="let item of cartItems$ | async" class="flex flex-col py-6">
+          <div class="my-3 ml-4 flex flex-1" *ngFor="let orderLine of item.orderLines">
+            <div class="h-24 mx-5 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+              <img [src]="getImageUrl(orderLine.petProduct?.product?.image)" [alt]="orderLine.petProduct?.product?.name" class="h-full w-full object-cover object-center">
+            </div>
+            <div >
+              <div class="flex justify-between text-base font-medium text-gray-900">
+                <h3>
+                  <a href="#">{{ orderLine.petProduct?.product?.name }}</a>
+                </h3>
+                <p class="ml-4">${{ orderLine.petProduct?.product?.price }}</p>
+              </div>
+              <p class="mt-1 text-sm text-gray-500">{{ orderLine.petProduct?.product?.description }}</p>
+              <p class="text-gray-500">Qty {{ orderLine.quantity }}</p>
+            </div>
+            <div class="flex flex-1 items-end justify-between text-sm">
+              <div class="flex">
+                <button type="button" (click)="removeOrderLine(item.OrderId, orderLine.id)" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="flex justify-between mt-4">
+    <span class="text-gray-700 font-medium">Total:</span>
+    <span class="text-gray-900 font-semibold">${{ total }}</span>
+  </div>
+
+  <div class="mt-4 flex justify-end">
+    <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" (click)="placeOrder()">
+      Place Order
+    </button>
+  </div>
+</div>

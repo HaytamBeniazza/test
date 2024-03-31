@@ -1,0 +1,15 @@
+<div  class="w-80 bg-white border border-gray-200 rounded-lg shadow">
+    <a [routerLink]="['/product', petProduct?.id]">
+        <img width="800px" [src]="getImageUrl(petProduct?.product?.image)" alt="Image">
+        <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ petProduct?.product?.name}}</h5>
+        </a>
+        <div class="grid grid-cols-2 gap-2"> 
+            <p class="mb-3 font-normal text-gray-700 ">Prix : {{petProduct?.product?.price}}DH</p>     
+            <p class="mb-3 font-normal text-gray-700 "> {{petProduct?.product?.quantity}} Left</p>
+        
+        </div>
+    </div>
+    </a>
+</div>
